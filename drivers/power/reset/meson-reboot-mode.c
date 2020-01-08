@@ -79,8 +79,6 @@ static int meson_reboot_mode_probe(struct platform_device *pdev)
 		return err;
 	}
 
-	arm_pm_restart = NULL;
-
 	return 0;
 }
 
