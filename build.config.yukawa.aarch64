@@ -1,5 +1,5 @@
 ARCH=arm64
-BRANCH=mirror-aosp-android-amlogic-bmeson-4.19
+BRANCH=mirror-aosp-android-amlogic-bmeson-5.4
 CC=clang
 LD=ld.lld
 NM=llvm-nm
