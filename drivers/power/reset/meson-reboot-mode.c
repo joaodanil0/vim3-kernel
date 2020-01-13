@@ -66,7 +66,7 @@ static int meson_restart_handler(struct notifier_block *this,
 
 static struct notifier_block meson_restart_nb = {
 	.notifier_call = meson_restart_handler,
-	.priority = 128,
+	.priority = 130,
 };
 
 static int meson_reboot_mode_probe(struct platform_device *pdev)
