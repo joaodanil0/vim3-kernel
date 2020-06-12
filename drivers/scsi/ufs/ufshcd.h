@@ -55,8 +55,8 @@
 #include <linux/clk.h>
 #include <linux/completion.h>
 #include <linux/regulator/consumer.h>
-#include <linux/devfreq.h>
 #include <linux/bitfield.h>
+#include <linux/devfreq.h>
 #include "unipro.h"
 
 #include <asm/irq.h>
@@ -67,6 +67,7 @@
 #include <scsi/scsi_tcq.h>
 #include <scsi/scsi_dbg.h>
 #include <scsi/scsi_eh.h>
+#include <linux/android_kabi.h>
 
 #include "ufs.h"
 #include "ufshci.h"
@@ -359,6 +360,11 @@ struct ufs_hba_variant_ops {
 	void	(*config_scaling_param)(struct ufs_hba *hba,
 					struct devfreq_dev_profile *profile,
 					void *data);
+
+	ANDROID_KABI_RESERVE(1);
+	ANDROID_KABI_RESERVE(2);
+	ANDROID_KABI_RESERVE(3);
+	ANDROID_KABI_RESERVE(4);
 };
 
 struct keyslot_mgmt_ll_ops;
@@ -382,6 +388,11 @@ struct ufs_hba_crypto_variant_ops {
 				    struct scsi_cmnd *cmd,
 				    struct ufshcd_lrb *lrbp);
 	void *priv;
+
+	ANDROID_KABI_RESERVE(1);
+	ANDROID_KABI_RESERVE(2);
+	ANDROID_KABI_RESERVE(3);
+	ANDROID_KABI_RESERVE(4);
 };
 
 /* clock gating state  */
@@ -720,6 +731,7 @@ struct ufs_hba {
 	u32 eh_flags;
 	u32 intr_mask;
 	u16 ee_ctrl_mask;
+	u16 hba_enable_delay_us;
 	bool is_powered;
 
 	/* Work Queues */
@@ -790,6 +802,12 @@ struct ufs_hba {
 	 * inline crypto engine, if it is present
 	 */
 #define UFSHCD_CAP_CRYPTO (1 << 7)
+	/*
+	 * This capability allows the host controller driver to turn-on
+	 * WriteBooster, if the underlying device supports it and is
+	 * provisioned to be used. This would increase the write performance.
+	 */
+#define	UFSHCD_CAP_WB_EN (1 << 8)
 
 	struct devfreq *devfreq;
 	struct ufs_clk_scaling clk_scaling;
@@ -812,6 +830,13 @@ struct ufs_hba {
 	u32 crypto_cfg_register;
 	struct keyslot_manager *ksm;
 #endif /* CONFIG_SCSI_UFS_CRYPTO */
+
+	bool wb_buf_flush_enabled;
+	bool wb_enabled;
+	ANDROID_KABI_RESERVE(1);
+	ANDROID_KABI_RESERVE(2);
+	ANDROID_KABI_RESERVE(3);
+	ANDROID_KABI_RESERVE(4);
 };
 
 /* Returns true if clocks can be gated. Otherwise false */
@@ -860,6 +885,11 @@ static inline bool ufshcd_is_auto_hibern8_enabled(struct ufs_hba *hba)
 	return FIELD_GET(UFSHCI_AHIBERN8_TIMER_MASK, hba->ahit) ? true : false;
 }
 
+static inline bool ufshcd_is_wb_allowed(struct ufs_hba *hba)
+{
+	return hba->caps & UFSHCD_CAP_WB_EN;
+}
+
 #define ufshcd_writel(hba, val, reg)	\
 	writel((val), (hba)->mmio_base + (reg))
 #define ufshcd_readl(hba, reg)	\
@@ -886,9 +916,11 @@ int ufshcd_alloc_host(struct device *, struct ufs_hba **);
 void ufshcd_dealloc_host(struct ufs_hba *);
 int ufshcd_hba_enable(struct ufs_hba *hba);
 int ufshcd_init(struct ufs_hba * , void __iomem * , unsigned int);
+int ufshcd_link_recovery(struct ufs_hba *hba);
 int ufshcd_make_hba_operational(struct ufs_hba *hba);
 void ufshcd_remove(struct ufs_hba *);
 int ufshcd_uic_hibern8_exit(struct ufs_hba *hba);
+void ufshcd_delay_us(unsigned long us, unsigned long tolerance);
 int ufshcd_wait_for_register(struct ufs_hba *hba, u32 reg, u32 mask,
 				u32 val, unsigned long interval_us,
 				unsigned long timeout_ms, bool can_sleep);
