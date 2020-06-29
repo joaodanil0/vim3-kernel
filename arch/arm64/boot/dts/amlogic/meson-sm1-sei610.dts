@@ -46,7 +46,8 @@
 	};
 
 	gpio-keys {
-		compatible = "gpio-keys";
+		compatible = "gpio-keys-polled";
+		poll-interval = <100>;
 
 		key1 {
 			label = "A";
