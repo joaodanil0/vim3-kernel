@@ -1,4 +1,4 @@
-[abi_whitelist]
+[abi_symbol_list]
   add_device_randomness
   add_timer
   add_timer_on
@@ -2409,7 +2409,6 @@
   vb2_streamon
   vfree
   vfs_fsync
-  vfs_read
   vfs_statx
   video_devdata
   video_device_alloc
