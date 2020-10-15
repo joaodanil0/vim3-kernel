@@ -11,6 +11,10 @@ SKIP_CP_KERNEL_HDR=1
 # this is needed to generate __symbols__ for u-boot
 DTC_FLAGS="-@"
 
+MAKE_GOALS="${MAKE_GOALS}
+dtbs
+"
+
 FILES="
 arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dtb
 arch/arm64/boot/dts/amlogic/meson-g12a-sei510-android.dtb
