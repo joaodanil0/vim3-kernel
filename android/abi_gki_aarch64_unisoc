@@ -208,15 +208,6 @@
   handle_bad_irq
   handle_edge_irq
   handle_level_irq
-  hid_compare_device_paths
-  hid_debug
-  hid_field_extract
-  hid_hw_close
-  hid_hw_open
-  hid_hw_stop
-  hid_input_report
-  hid_report_raw_event
-  __hid_request
   i2c_del_driver
   i2c_register_driver
   i2c_smbus_read_byte_data
@@ -646,8 +637,6 @@
   usb_gadget_udc_reset
   usb_get_dr_mode
   usb_get_intf
-  usb_hcd_is_primary_hcd
-  usb_hid_driver
   usb_interface_id
   usb_kill_urb
   usb_phy_get_charger_current
@@ -860,55 +849,6 @@
 
 # required by gpio-sprd.ko
   __platform_driver_probe
-
-# required by hid-generic.ko
-  bus_for_each_drv
-  hid_bus_type
-  hid_hw_start
-  hid_match_device
-  hid_open_report
-  __hid_register_driver
-  hid_unregister_driver
-
-# required by hid-logitech-dj.ko
-  hid_add_device
-  hid_allocate_device
-  hid_destroy_device
-  hid_parse_report
-  strlcat
-
-# required by hid-logitech-hidpp.ko
-  hid_snto32
-  input_ff_create
-  strnstr
-
-# required by hid-picolcd.ko
-  hid_set_field
-
-# required by hid-prodikeys.ko
-  snd_card_disconnect
-  snd_card_free_when_closed
-  snd_card_new
-  snd_card_register
-  snd_device_new
-  snd_rawmidi_new
-  snd_rawmidi_receive
-  snd_rawmidi_set_ops
-
-# required by hid-roccat.ko
-  noop_llseek
-
-# required by hid-roccat-lua.ko
-  sysfs_create_bin_file
-  sysfs_remove_bin_file
-
-# required by hid-uclogic.ko
-  usb_string
-
-# required by hid-wiimote.ko
-  kasprintf
-  led_classdev_register_ext
-  led_classdev_unregister
 
 # required by i2c-sprd.ko
   i2c_add_numbered_adapter
@@ -1964,60 +1904,7 @@
   sg_init_one
   sg_nents_for_len
 
-# required by wacom.ko
-  devm_led_trigger_register
-  devres_close_group
-  devres_open_group
-  devres_release_group
-  hid_alloc_report_buf
-  hidinput_calc_abs_res
-  int_sqrt
-  __kfifo_in_r
-  __kfifo_max_r
-  __kfifo_out_r
-  __kfifo_skip_r
-  led_trigger_event
-  memmove
-  sysfs_create_files
-
 # required by wcn_bsp.ko
   memdup_user
   register_chrdev_region
   request_firmware_direct
-
-# required by xhci-hcd.ko
-  dma_pool_alloc
-  dma_pool_create
-  dma_pool_destroy
-  dma_pool_free
-  __num_online_cpus
-  param_ops_ullong
-  pci_alloc_irq_vectors_affinity
-  pci_free_irq_vectors
-  pci_irq_vector
-  radix_tree_delete
-  radix_tree_insert
-  radix_tree_lookup
-  radix_tree_maybe_preload
-  sg_pcopy_from_buffer
-  sg_pcopy_to_buffer
-  usb_amd_dev_put
-  usb_amd_pt_check_port
-  usb_amd_quirk_pll_disable
-  usb_amd_quirk_pll_enable
-  usb_asmedia_modifyflowcontrol
-  usb_disable_xhci_ports
-  usb_hcd_end_port_resume
-  usb_hc_died
-  usb_hcd_irq
-  usb_hcd_start_port_resume
-  usb_hub_clear_tt_buffer
-  usb_root_hub_lost_power
-  usb_wakeup_notification
-
-# required by xhci-plat-hcd.ko
-  devm_clk_get_optional
-  of_usb_host_tpl_support
-  pci_bus_type
-  __usb_create_hcd
-  usb_hcd_platform_shutdown
