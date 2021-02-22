@@ -118,7 +118,6 @@
   bus_set_iommu
   bus_unregister
   call_netdevice_notifiers
-  call_rcu
   cancel_delayed_work
   cancel_delayed_work_sync
   cancel_work_sync
@@ -209,10 +208,6 @@
   cma_alloc
   cma_get_name
   cma_release
-  cmd_db_read_addr
-  cmd_db_read_aux_data
-  cmd_db_read_slave_id
-  cmd_db_ready
   compat_alloc_user_space
   complete
   complete_all
@@ -1300,7 +1295,6 @@
   netlink_kernel_release
   netlink_unicast
   net_ratelimit
-  new_inode
   nf_conntrack_destroy
   nla_memcpy
   __nla_parse
@@ -1580,7 +1574,6 @@
   prepare_binprm
   prepare_to_wait
   prepare_to_wait_event
-  print_hex_dump
   printk
   proc_create
   proc_create_data
@@ -1611,11 +1604,7 @@
   qdisc_reset
   queue_delayed_work_on
   queue_work_on
-  radix_tree_delete
-  radix_tree_gang_lookup
-  radix_tree_insert
   radix_tree_iter_delete
-  radix_tree_lookup
   radix_tree_maybe_preload
   radix_tree_next_chunk
   ___ratelimit
@@ -1655,7 +1644,6 @@
   rb_last
   rb_next
   rb_prev
-  rcu_barrier
   __rcu_read_lock
   __rcu_read_unlock
   rdev_get_drvdata
@@ -1675,7 +1663,6 @@
   register_blkdev
   __register_chrdev
   register_chrdev_region
-  register_filesystem
   register_inet6addr_notifier
   register_inetaddr_notifier
   register_netdev
@@ -2138,9 +2125,7 @@
   __tracepoint_dma_fence_emit
   __tracepoint_xdp_exception
   trace_print_array_seq
-  trace_print_flags_seq
   trace_print_hex_seq
-  trace_print_symbols_seq
   trace_raw_output_prep
   trace_seq_printf
   tracing_off
@@ -2191,7 +2176,6 @@
   unregister_blkdev
   __unregister_chrdev
   unregister_chrdev_region
-  unregister_filesystem
   unregister_gadget_item
   unregister_inet6addr_notifier
   unregister_inetaddr_notifier
@@ -2392,8 +2376,6 @@
   vm_get_page_prot
   vm_insert_page
   vm_iomap_memory
-  vm_map_ram
-  vm_unmap_ram
   vprintk
   vscnprintf
   vsnprintf
@@ -2406,7 +2388,6 @@
   wait_for_completion_timeout
   wait_woken
   __wake_up
-  __wake_up_locked
   wake_up_process
   wakeup_source_register
   wakeup_source_unregister
