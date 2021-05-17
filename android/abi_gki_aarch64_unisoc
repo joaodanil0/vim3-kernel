@@ -1862,6 +1862,7 @@
 
 # required by sprd_dvfs.ko
   devfreq_add_governor
+  devfreq_event_get_event
   devfreq_remove_governor
   devfreq_update_status
   device_rename
@@ -2557,15 +2558,27 @@
   smpboot_register_percpu_thread
 
 # required by zram.ko
-	bdgrab
-	bio_chain
-	bio_init
-	blkdev_put
-	blk_status_to_errno
-	blkdev_get
-	filp_close
-	filp_open
-	file_path
-	I_BDEV
-	set_blocksize
-	submit_bio_wait
+  bdgrab
+  bio_chain
+  bio_init
+  blkdev_put
+  blk_status_to_errno
+  blkdev_get
+  filp_close
+  filp_open_block
+  file_path
+  I_BDEV
+  set_blocksize
+  submit_bio_wait
+
+# required by sprd_usb_f_rndis.ko
+  alloc_etherdev_mqs
+  dev_get_stats
+  dev_set_mac_address
+  eth_mac_addr
+  eth_validate_addr
+  ethtool_op_get_link
+  hex_to_bin
+  usb_assign_descriptors
+  usb_free_all_descriptors
+  usb_gstrings_attach
